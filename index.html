@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>The movie database web</title>    
+        <title>The movie database web was changed to show how SourceTree works</title>    
         <!-- Bootstrap -->
         <!-- build:css styles/main.css -->
             <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,9 @@
     <body>
         <!-- Each div element loads the view in accordance to the states declared in app.js file -->
         <div ui-view="header"></div>
-        <div ui-view="content"></div>
+        <div ui-view="content">
+            <h1>Added h1 element in this file</h1>
+        </div>
         <div ui-view="footer"></div>
         
         <!-- build:js scripts/main.js -->
