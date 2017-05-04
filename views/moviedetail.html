@@ -1,0 +1,50 @@
+<div class="container body-content">
+    <div class="row" ng-controller="MovieController" >
+        <div class="col-xs-12 breadcrumb-padding">
+            <ol class="breadcrumb">
+                <li><a href="/#">Home</a></li>
+                <li class="active">Movie</a></li>
+            </ol>
+        </div>
+        <div class="col-xs-12 text-center" ng-if="!showMovie">
+            <h3 ng-if="!hasError"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{message}}</h3>
+            <h3 ng-if="hasError"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{message}}</h3>
+        </div>
+        <div class="col-xs-12" ng-if="showMovie">
+            <div class="col-xs-5 col-md-4 thumbnail">
+                <img class="img-thumbnail poster" ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" ng-if="movie.poster_path">
+                <img class="img-thumbnail poster" ng-src="images/big_movie.png" ng-if="!movie.poster_path">
+            </div>
+            <div class="col-xs-7 col-md-8">
+                <h2 class="media-heading">
+                    {{movie.title}} 
+                </h2>
+                <small ng-if="movie.tagline">{{movie.tagline}} <br></small>
+                <span class="label label-warning" ng-if="movie.vote_average">
+                    {{movie.vote_average}}
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                </span>
+                &nbsp;
+                 <span class="label label-success" ng-if="movie.release_date">
+                    {{movie.release_date|date:'yyyy'}}
+                </span>
+                <p class="text-justify">
+                    {{movie.overview}}
+                    <span ng-if="movie.budget"> <br> <strong>Budget: </strong> {{movie.budget|currency}}</span>
+                </p>
+                <strong ng-if="movie.genres">Genres:</strong>
+                <ul ng-if="movie.genres">
+                    <li ng-repeat="genre in movie.genres">
+                        {{genre.name}}
+                    </li>  
+                </ul>
+                <strong ng-if="movie.production_companies">Production companies:</strong>
+                <ul ng-if="movie.production_companies">
+                    <li ng-repeat="company in movie.production_companies">
+                        {{company.name}}
+                    </li>  
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

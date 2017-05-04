@@ -1,0 +1,70 @@
+<div  ng-controller="HeaderController" class="container">
+    <nav class="navbar navbar-fixed-top row">
+        <div class="col-xs-12 nav-content">
+            <div class="text-center visible-md visible-sm visible-lg">
+                <h2><a href="#" class="main-text">The movie database web</a></h2>
+            </div>
+            <div class="text-center visible-xs">
+                <h4><a href="#" class="main-text">The movie database web</a></h4>
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">
+                     <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
+                </div>
+                <input type="text" class="form-control input-lg" placeholder="Search movie for..." name="searchText" ng-model="searchText" ng-keyup="getResults($event,1)" autofocus>
+                <div class="input-group-addon">
+                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+        <div class="content-scroll col-xs-12" ng-if="showResults">
+            <div class="list-group white-background">
+                <a ui-sref="app.{{result.media_type}}({id: result.id})" class="list-group-item" ng-repeat="result in results.results | filter:validResult |orderBy:'media_type':true | orderBy:'release_date':true" ng-click="cleanText()">
+                    <div class="row" ng-if="result.media_type=='person'">
+                        <div class="col-xs-4 col-md-2">
+                            <img ng-src="https://image.tmdb.org/t/p/w45_and_h67_bestv2/{{result.profile_path}}" class="img-circle" ng-if="result.profile_path">
+                            <img  ng-src="images/person.png" class="img-circle" ng-if="!result.profile_path">
+                        </div>
+                        <div class="col-xs-6 col-md-8">
+                            {{result.name}}
+                            <span class="label label-primary">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                Person
+                            </span>
+                        </div>
+                    </div>
+                    <div ng-if="result.media_type=='movie'" class="row">
+                        <div class="col-xs-5 col-md-2">
+                            <img ng-src="https://image.tmdb.org/t/p/w250_and_h141_bestv2/{{result.poster_path}}" class="img-thumbnail small-image" ng-if="result.poster_path">
+                            <img  ng-src="images/medium_movie.png" class="img-thumbnail small-image" ng-if="!result.poster_path" >
+                        </div>
+                        <div class="col-xs-7 col-md-8">
+                            {{result.title}}
+                            <span class="label label-info">
+                                <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+                                Movie
+                            </span>
+                            <span class="label label-warning" ng-if="result.vote_average">
+                            <br>
+                                {{result.vote_average}}
+                                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                            </span>
+                            <span class="label label-success" ng-if="result.release_date">
+                            <br>
+                                {{result.release_date|date:'yyyy'}}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+                <div class="col-xs-12 white-background" ng-show="results.page!=results.total_pages">
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li class="next"><a href="" ng-click="getMoreResults(results.page+1)">More <span aria-hidden="true">&rarr;</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="header-size"></div>

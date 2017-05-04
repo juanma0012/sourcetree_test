@@ -1,0 +1,57 @@
+<div class="container body-content">
+    <div class="row" ng-controller="PersonController" >
+        <div class="col-xs-12 breadcrumb-padding">
+            <ol class="breadcrumb">
+                <li><a href="/#">Home</a></li>
+                <li class="active">Actor</a></li>
+            </ol>
+        </div>
+        <div class="col-xs-12 text-center" ng-if="!showPerson">
+            <h3 ng-if="!hasError"> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{message}}</h3>
+            <h3 ng-if="hasError"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{message}}</h3>
+        </div>
+        <div class="col-xs-12" ng-if="showPerson">
+            <div class="col-xs-5 col-md-4 thumbnail">
+                <img class="img-thumbnail poster" ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{person.profile_path}}" ng-if="person.profile_path">
+                <img class="img-thumbnail poster" ng-src="images/big_person.png" ng-if="!person.profile_path">
+            </div>
+            <div class="col-xs-7 col-md-8">
+                <h2 class="media-heading">
+                    {{person.name}} 
+                </h2>
+                <p class="text-justify visible-md visible-sm visible-lg">
+                    {{person.biography}}
+                </p>
+            </div>
+            <div class="col-xs-12" ng-controller="ActorMoviesController" >
+                <div class="col-xs-12 text-center" ng-if="!showMovies">
+                    <h3> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{message}}</h3>
+                </div>
+                <div ng-if="showMovies">
+                    <div class="page-header"> 
+                        <h2>Movies</h2>
+                    </div>
+                    <div  class="col-xs-6 col-md-3 col-sm-4 poster-image" ng-repeat="movie in movies.results" >
+                        <a ui-sref="app.movie({id: movie.id})" class="list-group-item center-block poster-link">
+                            <div class="center-block">
+                                <img ng-src="https://image.tmdb.org/t/p/w250_and_h141_bestv2/{{movie.poster_path}}" class="img-thumbnail" ng-if="movie.poster_path">
+                                <img  ng-src="images/medium_movie.png" class="img-thumbnail" ng-if="!movie.poster_path">
+                            </div>
+                            <div class="text-center">
+                                <small>{{movie.title}}</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12" ng-show="movies.page!=movies.total_pages">
+                        <nav aria-label="...">
+                            <ul class="pager">
+                                <li class="next"><a href="" ng-click="getMoreMovies(movies.page+1)">More <span aria-hidden="true">&rarr;</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
