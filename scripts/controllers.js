@@ -10,9 +10,7 @@ angular.module('themoviedbApp')
         $scope.sentText = "";
         $scope.canSearch = true;
         $scope.showResults = false;
-        $scope.variableA = true;
-        $scope.message = "Modified in master branch ";
-        $scope.variableB = false;
+        $scope.message = "Changed message in branch_B";
         $scope.results = [];
         $scope.page = 1;
 
@@ -57,6 +55,10 @@ angular.module('themoviedbApp')
                 return true;
             else
                 return false;
+        };
+        //New function added in branch_B.
+        $scope.functionX = function(value){
+            console.log(value);
         };
         //It put the variables without information.
         $scope.cleanText = function(value,index, array){
