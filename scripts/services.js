@@ -22,5 +22,8 @@ angular.module('themoviedbApp')
         };
         this.getPopularMovies = function () {
             return $http.get(baseURL+"movies/popular");
+        };       
+        this.getClassicMovies = function () {
+            return $http.get(baseURL+"movies/classic");
         };             
     }]);

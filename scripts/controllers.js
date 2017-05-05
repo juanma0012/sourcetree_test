@@ -10,7 +10,9 @@ angular.module('themoviedbApp')
         $scope.sentText = "";
         $scope.canSearch = true;
         $scope.showResults = false;
-        $scope.message = "Loading ...";
+        $scope.variableA = true;
+        $scope.message = "Modified in master branch ";
+        $scope.variableB = false;
         $scope.results = [];
         $scope.page = 1;
 
