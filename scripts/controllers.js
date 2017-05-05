@@ -11,8 +11,9 @@ angular.module('themoviedbApp')
         $scope.canSearch = true;
         $scope.showResults = false;
         $scope.message = "Changed message in branch_B";
-        $scope.results = [];
+        $scope.results = [1,2,3];
         $scope.page = 1;
+        $scope.section = 1;
 
         //Functions
 
@@ -49,15 +50,12 @@ angular.module('themoviedbApp')
                 );
             }
         };
-        //It only accept type either person or movie.
-        $scope.validResult = function(value,index, array){
-            if(value.media_type=='person'||value.media_type=='movie')
-                return true;
-            else
-                return false;
-        };
         //New function added in branch_B.
         $scope.functionX = function(value){
+            console.log(value);
+        };
+        //New function added in master.
+        $scope.functionY = function(value){
             console.log(value);
         };
         //It put the variables without information.

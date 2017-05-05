@@ -35,6 +35,17 @@ angular.module('themoviedbApp', ['ui.router'])
                 }
             })
 
+            // route for the group details page
+            .state('app.group', {
+                url: 'group/:id',
+                views: {
+                    'content@': {
+                        templateUrl : 'views/groupdetail.html',
+                        controller  : 'GroupController'
+                    }
+                }
+            })
+
             // route for the movie details page
             .state('app.movie', {
                 url: 'movie/:id',
